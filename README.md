@@ -15,8 +15,8 @@ A arquitetura do aplicativo foi pensada para ser intuitiva e direta, guiando o u
 * **Splash Screen:** Apresenta o logo e a identidade visual do GeoShield, carregando os recursos iniciais.
 * **Intro Screen:** Uma tela de *onboarding* que explica rapidamente o propósito do aplicativo (cruzamento de dados de satélites para emitir alertas e proteger áreas vulneráveis) antes de liberar o acesso ao painel principal.
 
-<align="center" img width="543" height="743" alt="image" src="https://github.com/user-attachments/assets/ccb4b442-ff32-4471-994b-b5432bc88169" />
-<align="center" img width="545" height="694" alt="image" src="https://github.com/user-attachments/assets/dfe01ced-cbea-4f6e-a996-297fb9eaab56" />
+<img align="center" width="543" height="743" alt="image" src="https://github.com/user-attachments/assets/ccb4b442-ff32-4471-994b-b5432bc88169" />
+<img align="center" width="545" height="694" alt="image" src="https://github.com/user-attachments/assets/dfe01ced-cbea-4f6e-a996-297fb9eaab56" />
 
 
 ### 2. Dashboard (Painel Geral)
