@@ -58,7 +58,8 @@ Ao clicar em uma área na tela de monitoramento, o usuário é levado aos detalh
 * Exibe o ID do sensor de origem, o raio de alcance monitorado e a temperatura.
 * Possui um botão de ação **"Solicitar Nova Leitura Orbital"** que simula a requisição de novos dados do satélite, atualizando o estado e a temperatura da tela em tempo real, além de exibir uma notificação (SnackBar) de sucesso limpa e sem sobreposição.
 
-> *Substitua o link abaixo pelo print da tela de Detalhes*
+<img width="539" height="691" alt="image" src="https://github.com/user-attachments/assets/2b4cd252-ccaa-4627-94ad-5ae2e296130e" />
+
 
 ---
 
