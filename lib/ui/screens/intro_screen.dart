@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
-import 'package:geoshield/navigation/app_routes.dart';
+import "package:flutter/material.dart";
+import "package:geoshield/navigation/app_routes.dart";
 
 class IntroScreen extends StatefulWidget {
   const IntroScreen({super.key});
@@ -20,29 +20,35 @@ class _IntroScreenState extends State<IntroScreen> {
                     children: [
                       const Spacer(),
                       Container(
-                        padding: const EdgeInsets.all(32),
-                        decoration: BoxDecoration(
-                          color: Colors.blueGrey.shade50,
-                          shape: BoxShape.circle,
-                        ),
-                        child: const Icon(
-                          Icons.public,
-                          size: 120,
-                          color: Colors.blueGrey,
-                        ),
-                      ),
+                          padding: const EdgeInsets.all(32),
+                          decoration: BoxDecoration(
+                            color: Colors.blueGrey.shade50,
+                            shape: BoxShape.circle,
+                          ),
+                          child: const Icon(
+                            Icons.public,
+                            size: 120,
+                            color: Colors.blueGrey,
+                          )),
                       const SizedBox(
                         height: 16,
                       ),
                       const Text(
-                        "O Geoshield cruza dados orbitais em tempo real para emitir alertas prévios e proteger áreas vulneráveis contra desastres climáticos.",
+                        "O GeoShield é a sua ferramenta definitiva para a Indústria Espacial. "
+                        "Cruzamos dados de satélites em tempo real para monitorar desastres "
+                        "climáticos em escala global. \n\n"
+                        "Nossa tecnologia de monitoramento orbital fornece alertas precoces "
+                        "essenciais para a proteção de áreas vulneráveis e a preservação "
+                        "de ecossistemas estratégicos. \n\n"
+                        "Inicie o monitoramento agora e esteja sempre um passo à frente.",
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                            fontSize: 16, color: Colors.black54, height: 1.5),
+                            fontSize: 16, color: Colors.black54, height: 1),
                       ),
                       const Spacer(),
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           FilledButton.icon(
                             onPressed: () {

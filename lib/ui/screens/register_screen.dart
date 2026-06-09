@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:geoshield/model/alerta.dart';
+import 'package:geoshield/repository/alerta_repository.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -9,9 +11,11 @@ class RegisterScreen extends StatefulWidget {
 
 class _RegisterScreenState extends State<RegisterScreen> {
   final TextEditingController _nomeController = TextEditingController();
+  final TextEditingController _temperaturaController = TextEditingController();
   double raioMonitoramento = 50.0;
   bool ativarAlertasSms = true;
   String biomaSelecionado = 'Amazônia';
+  NivelRisco riscoSelecionado = NivelRisco.baixo;
 
   final List<String> biomas = [
     'Amazônia',
@@ -25,13 +29,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
   @override
   void dispose() {
     _nomeController.dispose();
+    _temperaturaController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Cadastrar Região')),
+      appBar: AppBar(title: const Text('Cadastrar Área')),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -40,7 +45,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             TextField(
               controller: _nomeController,
               decoration: const InputDecoration(
-                labelText: 'Nome da Região',
+                labelText: 'Nome da Área',
                 border: OutlineInputBorder(),
                 prefixIcon: Icon(Icons.map),
               ),
@@ -56,6 +61,44 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 return DropdownMenuItem(value: bioma, child: Text(bioma));
               }).toList(),
               onChanged: (value) => setState(() => biomaSelecionado = value!),
+            ),
+            const SizedBox(height: 24),
+            const Text(
+              'Nível de Risco Inicial',
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 8),
+            Container(
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.grey),
+                borderRadius: BorderRadius.circular(4),
+              ),
+              child: Column(
+                children: NivelRisco.values.map((risco) {
+                  return RadioListTile<NivelRisco>(
+                    title: Text(risco.nome),
+                    value: risco,
+                    groupValue: riscoSelecionado,
+                    activeColor: Colors.blueGrey,
+                    onChanged: (NivelRisco? value) {
+                      if (value != null) {
+                        setState(() {
+                          riscoSelecionado = value;
+                        });
+                      }
+                    },
+                  );
+                }).toList(),
+              ),
+            ),
+            const SizedBox(height: 24),
+            TextField(
+              controller: _temperaturaController,
+              decoration: const InputDecoration(
+                labelText: 'Temperatura registrada',
+                border: OutlineInputBorder(),
+                prefixIcon: Icon(Icons.thermostat),
+              ),
             ),
             const SizedBox(height: 24),
             Text('Raio de Monitoramento: ${raioMonitoramento.toInt()} km'),
@@ -86,7 +129,17 @@ class _RegisterScreenState extends State<RegisterScreen> {
               child: FilledButton(
                 onPressed: () {
                   if (_nomeController.text.isNotEmpty) {
-                    Navigator.pop(context); // Retorna ao Dashboard
+                    final novoCadastro = Alerta(
+                      id: DateTime.now().millisecondsSinceEpoch.toString(),
+                      regiao: '$biomaSelecionado - ${_nomeController.text}',
+                      risco: riscoSelecionado,
+                      temperatura: double.parse(_temperaturaController.text),
+                      raioMonitoramento: raioMonitoramento,
+                    );
+
+                    cadastrarNovoAlerta(novoCadastro);
+
+                    Navigator.pop(context);
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
                           content: Text(

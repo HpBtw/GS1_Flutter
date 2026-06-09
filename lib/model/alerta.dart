@@ -20,14 +20,16 @@ class Alerta extends Equatable {
   final String regiao;
   final NivelRisco risco;
   final double temperatura;
+  final double raioMonitoramento;
 
   const Alerta({
     required this.id,
     required this.regiao,
     required this.risco,
     required this.temperatura,
+    required this.raioMonitoramento
   });
 
   @override
-  List<Object?> get props => [id, regiao, risco, temperatura];
+  List<Object?> get props => [id, regiao, risco, temperatura, raioMonitoramento];
 }

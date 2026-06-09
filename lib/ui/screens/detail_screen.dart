@@ -30,6 +30,11 @@ class _DetailScreenState extends State<DetailScreen> {
                 style: const TextStyle(fontSize: 16)),
             const SizedBox(height: 16),
             Text(
+              'Raio de Monitoramento: ${alerta.raioMonitoramento.toInt()} km',
+              style: const TextStyle(fontSize: 18),
+            ),
+            const SizedBox(height: 16),
+            Text(
               'Temperatura Lida: ${dadosAtualizados ? alerta.temperatura + 1.2 : alerta.temperatura}°C',
               style: const TextStyle(fontSize: 18),
             ),
@@ -44,13 +49,14 @@ class _DetailScreenState extends State<DetailScreen> {
                   setState(() {
                     dadosAtualizados = !dadosAtualizados;
                   });
+                  ScaffoldMessenger.of(context).clearSnackBars();
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(
                         content:
                             Text('Dados orbitais atualizados com sucesso!')),
                   );
                 },
-                child: const Text('Solicitar Nova Leitura Orbital'),
+                child: const Text('Solicitar nova Leitura Orbital'),
               ),
             )
           ],
